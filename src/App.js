@@ -16,6 +16,13 @@ function App() {
     setWatchlist([...watchlist, movie])
   }
 
+  const removeMovie = (movie) => {
+    let newState = watchlist.filter(film => {
+      return film !== movie
+    })
+    setWatchlist(newState)
+  }
+
   const getData = () => {
     axios
       .get(
@@ -36,8 +43,8 @@ function App() {
     <div className="App">
       <Header />
       <main>
-        <MovieScreen movieList={movieList} page={page} setPage={setPage} watchlist={watchlist} addMovie={addMovie} />
-        <Watchlist watchlist={watchlist} />
+        <MovieScreen movieList={movieList} page={page} setPage={setPage} watchlist={watchlist} addMovie={addMovie} removeMovie={removeMovie} />
+        <Watchlist watchlist={watchlist} removeMovie={removeMovie} />
       </main>
     </div>
   );

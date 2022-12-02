@@ -2,9 +2,9 @@ import React from "react";
 
 import MovieCard from "./MovieCard";
 
-const Watchlist = ({ watchlist }) => {
+const Watchlist = ({ watchlist, removeMovie }) => {
   const movieDisplay = watchlist.map((movie) => {
-    return <MovieCard movie={movie} id={movie.id}>{movie.original_title}</MovieCard>;
+    return <MovieCard movie={movie} id={movie.id} removeMovie={removeMovie} watchlist={watchlist} >{movie.original_title}</MovieCard>;
   });
 
   return (
