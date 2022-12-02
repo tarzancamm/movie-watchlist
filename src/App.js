@@ -3,6 +3,7 @@ import axios from "axios";
 
 import Header from "./components/Header";
 import MovieScreen from "./components/MovieScreen";
+import Watchlist from './components/Watchlist'
 
 import "./App.css";
 
@@ -10,6 +11,10 @@ function App() {
   const [movieList, setMovieList] = useState([]);
   const [watchlist, setWatchlist] = useState([]);
   const [page, setPage] = useState(1);
+
+  const addMovie = (movie) => {
+    setWatchlist([...watchlist, movie])
+  }
 
   const getData = () => {
     axios
@@ -24,13 +29,15 @@ function App() {
 
   useEffect(() => {
     getData();
+    // eslint-disable-next-line
   }, [page]);
 
   return (
     <div className="App">
       <Header />
       <main>
-        <MovieScreen movieList={movieList} page={page} setPage={setPage} watchlist={watchlist} />
+        <MovieScreen movieList={movieList} page={page} setPage={setPage} watchlist={watchlist} addMovie={addMovie} />
+        <Watchlist watchlist={watchlist} />
       </main>
     </div>
   );
